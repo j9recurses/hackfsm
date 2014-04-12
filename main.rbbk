@@ -1,0 +1,43 @@
+require 'sinatra'
+require 'dm-core'
+require 'dm-validations'
+require 'dm-timestamps'
+require 'syntaxi'
+require 'data_mapper'
+require 'dm-mysql-adapter'
+require 'rest_client'
+
+#####database
+DataMapper::Logger.new($stdout, :debug)
+  DataMapper.setup(:default, 'mysql://myrailsbuddy:mypass@localhost/fsmhack')
+
+class Tag
+	include DataMapper::Resource
+ 	property :id,         Serial 
+  	property :tag,        Text,    :required => true  # Cannot be null
+	property :userid,     Integer,  :index => true 
+	property :metaid,     Integer,  :index => true
+	property :created_at, DateTime
+	property :updated_at, DateTime
+end
+
+DataMapper.auto_upgrade!
+
+
+###sinatra
+# new
+get '/' do
+  erb :search
+end
+
+# create
+post '/' do
+  @query = params[:tag_body]
+  if @query
+  @api_string = 'https://apis.berkeley.edu/solr/fsm/select?q=' +@query+ '&wt=json&indent=on&app_id=ae8269cd&app_key=06dcf6f2f95a61627cb6105268c6420f'
+  @stuff =  RestClient.get @api_string
+
+    erb :show
+  end
+end
+

@@ -1,0 +1,173 @@
+<!-- Primary Page Layout
+	================================================== -->
+
+	<header class="container header">
+		<div class="two-thirds column">
+				<!-- Label and text input -->
+				<!-- <label for="fsmSearch"></label> -->
+				<form action="/" method="POST">
+				<!-- Label and text input -->
+				<!-- <label for="fsmSearch"></label> -->
+				<input text name="search" id="search"  style="font-size:25pt;"></input text>
+   				<input type="submit" value="Search Archive" style="font-size:20pt;"/>
+
+
+				<!-- Wrap checkbox/radio button groups in fieldsets -->
+				<fieldset>
+					<!-- Give the fieldset a label -->
+					<!-- <label for=""></label> -->
+					<!-- Wrap each checkbox in a label, then give it the input and span for the text option -->
+					<label for="fsmCircularsCheckbox" title="fliers (printed matter), leaflets, pamphlets">
+						<input type="checkbox" id="fsmCircularsCheckbox" value="circulars" />
+						<span>circulars</span>
+					</label>
+					<label for="fsmCommentaryCheckbox" title="group statements, oral histories, personal statement, personal statements">
+						<input type="checkbox" id="fsmCommentaryCheckbox" value="commentary" />
+						<span>commentary</span>
+					</label>
+					<label for="fsmCorrespondenceCheckbox" title="form letters, letters (correspondence)" >
+						<input type="checkbox" id="fsmCorrespondenceCheckbox" value="correspondence" />
+						<span>correspondence</span>
+					</label>
+					<label for="fsmDocumentsCheckbox" title="papers (document genres), tables of content, text, title pages">
+						<input type="checkbox" id="fsmDocumentsCheckbox" value="texts" />
+						<span>documents</span>
+					</label>
+					<label for="fsmImagesCheckbox" title="still image">
+						<input type="checkbox" id="fsmImagesCheckbox" value="images" />
+						<span>images</span>
+					</label>
+					<label for="fsmPeriodicalsCheckbox" title="articles, magazines (periodicals), news bulletins, newsletters, newspapers">
+						<input type="checkbox" id="fsmPeriodicalsCheckbox" value="periodicals" />
+						<span>periodicals</span>
+					</label>
+					<label for="fsmReportsCheckbox" title="agendas, briefs (legal documents), memorandums, minutes, transcripts, progress reports, reports">
+						<input type="checkbox" id="fsmReportsCheckbox" value="reports" />
+						<span>reports</span>
+					</label>
+					<label for="fsmMiscellaneousCheckbox" title="detail, fdr, folder, item, miscellaneous">
+						<input type="checkbox" id="fsmMiscellaneousCheckbox" value="miscellaneous" />
+						<span>miscellaneous</span>
+					</label>
+				</fieldset>
+			</form>
+		</div>
+		<div class="one-third column">
+			<a href="#" title="&ldquo;I am a UC student. Please don't bend, fold, spindle or mutilate me.&rdquo;"><img src="images/FSM_logo.png" alt="FSM"></a>
+			<h2>Digital Archive</h2>
+		</div>
+	</header>
+  	
+	
+	
+
+	
+<%  
+	@count = 0
+	@docs =  @newstuff["response"]
+	#find the items to make query strings
+	if @docs["numFound"] == 0 
+		@numberitems =  0
+		@myresults = "No Results Found"
+   	else
+   		@numberitems =  @docs["numFound"]
+
+%> 
+<article class="container article">
+		<div class="two-thirds column results">
+
+
+	<% if @numberitems == 0 %>
+	<%= "<h2>" +@myresults + "<h2>"  %>
+	<% else %>
+	 <%= "<h2>" + @numberitems.to_s + ' items were found for the search: ' + @query + '</h2>'  %> 
+	 <% end %>
+
+
+<ol>
+<% 
+    	@myresults = @docs["docs"]
+    	@myresults.each do |d | 
+	##grab the items
+		@id =  d["id"]
+		@id = "xxx" if 	@id.nil? || 	@id.empty?
+		@fsmTitle = d["fsmTitle"]
+		@fsmTitle  = "xxx" if 	@fsmTitle .nil? || @fsmTitle.empty?
+		@fsmCreator = d["fsmCreator"]
+		@fsmCreator  = "xxx" if 	@fsmCreator.nil? || @fsmCreator.empty?
+		@fsmTypeOfResource = d["fsmTypeOfResource"]
+		@fsmPhysicalLocation = d["fsmPhysicalLocation"]
+		@fsmPhysicalLocation = "xxx" if 	@fsmPhysicalLocation.nil? || @fsmPhysicalLocation.empty?
+		@fsmTypeOfResource  = "xxx" if 	@fsmTypeOfResource.nil? || @fsmTypeOfResource.empty?
+		if @fsmTypeOfResource != 'xxx'
+			@fsmTypeOfResourcePretty = d["fsmTypeOfResource"]
+		else
+			@fsmTypeOfResourcePretty = 'xxx'
+		end
+
+		@fsmDateCreated = d["fsmDateCreated"]
+		@fsmDateCreated = "xxx" if @fsmDateCreated.nil? || @fsmDateCreated.empty?
+		@fsmNote = d["fsmNote"]
+		@fsmNote = "xxx" if @fsmNote.nil? || @fsmNote.empty?
+		@fsmIdentifier = d["fsmIdentifier"]
+		@fsmIdentifier  = "xxx" if 	@fsmIdentifier.nil? || @fsmIdentifier.empty?
+		@fsmRelatedTitle = d["fsmRelatedTitle"]
+		@fsmRelatedTitle  = "xxx" if @fsmRelatedTitle.nil? || @fsmRelatedTitle.empty?
+		@fsmRelatedIdentifier = d["fsmIdentifier"]
+		@fsmRelatedIdentifier   = "xxx" if @fsmRelatedIdentifier.nil? 
+		@fsmImageUrl = d["fsmImageUrl"]
+		@fsmImageUrl = "xxx" if @fsmImageUrl.nil? || @fsmImageUrl.empty?
+		@fsmTeiUrl =  d["fsmTeiUrl"]
+		@fsmTeiUrl = "xxx" if @fsmTeiUrl.nil? || @fsmTeiUrl.empty?
+
+	
+		if @fsmTitle.size > 0  and  @fsmTitle != 'xxx'
+			@fsmTitle = @fsmTitle.join(", ")
+		end
+		if @fsmCreator != 'xxx'
+			@fsmCreator = @fsmCreator.join(", ")
+		end
+		if @fsmTypeOfResource != 'xxx'
+			@fsmTypeOfResource = @fsmTypeOfResource.join(", ")
+		end
+		if @fsmRelatedTitle != 'xxx'
+			@fsmRelatedTitle = @fsmRelatedTitle.join(", ")
+		end
+		@fsmIdentifier  = @fsmIdentifier.join(", ")
+	
+		@fsmRelatedIdentifier  = @fsmRelatedIdentifier.join(", ")
+		if @fsmImageUrl != 'xxx'
+			@fsmImageUrl  = @fsmImageUrl.join("$")
+		end
+		if @fsmTeiUrl != 'xxx'
+			@fsmTeiUrl  = @fsmTeiUrl.join("$")
+		end
+
+
+
+		@querystring = "/singleresult?title=" + @fsmTitle  + "&id=" + @id +  "&creator=" + @fsmCreator +"&typeresource=" + @fsmTypeOfResource  + "&note=" + @fsmNote + "&identifier=" + @fsmIdentifier+ "&relatedtitle=" + @fsmRelatedTitle+ "&relatedidentifier=" + @fsmRelatedIdentifier + "&relatedtitle=" + @fsmRelatedTitle + "&relatedidentifier=" + @fsmRelatedIdentifier + "&location=" + @fsmPhysicalLocation + "&imgurl=" + @fsmImageUrl + "&teiurl=" + @fsmTeiUrl
+		@count = @count +1
+
+%>
+
+
+   <% if @count % 2 == 0 %>
+   <%=   '<li class="even">' %>
+   <% else  %>
+   <%=   '<li class="odd">' %>
+    <% end %>
+	 <a href=" <%=  @querystring %>"> <%= @fsmTitle%> + </a> <br/>
+	<% if @fsmCreator != 'xxx'%> <%= "Creator: " + @fsmCreator %> <%end%>
+	<% if @fsmPhysicalLocation != 'xxx'%> <%= "Location: " + @fsmPhysicalLocation %> <%end%> <br/>
+	<% @v = @fsmTypeOfResourcePretty.nil? 
+		if @v = false %>
+	<% if @fsmTypeOfResourcePretty != 'xxx' %> <%= "Resource Type: " +@fsmTypeOfResourcePretty[0] +": " +@fsmTypeOfResourcePretty[1] %> <%end%><%end%>  <br/>
+	<% if @fsmRelatedTitle != 'xxx'%> <%= "Related Collection: " + @fsmRelatedTitle  %> <%end%> 
+</li>
+
+<%		end 
+	end 
+%>
+</ol>
+		</div>
+	</article>

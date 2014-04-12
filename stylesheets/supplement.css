@@ -1,0 +1,393 @@
+/*
+* FSM Supplement
+* Author: RMS
+* 4/9/2014
+*/
+
+
+/* Table of Contents
+==================================================
+	#Typography
+	#Basic
+    #Header
+    #Article
+    #Aside
+    #Footer
+    #Button Changes
+    #Links Changes */
+
+/* #Typography
+================================================== */
+	@font-face {
+		font-family: 'open_sansbold';
+		src: url('OpenSans-Bold-webfont.eot');
+		src: url('OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+			url('OpenSans-Bold-webfont.woff') format('woff'),
+			url('OpenSans-Bold-webfont.ttf') format('truetype'),
+			url('OpenSans-Bold-webfont.svg#open_sansbold') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+	@font-face {
+		font-family: 'open_sansbold_italic';
+		src: url('OpenSans-BoldItalic-webfont.eot');
+		src: url('OpenSans-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+			url('OpenSans-BoldItalic-webfont.woff') format('woff'),
+			url('OpenSans-BoldItalic-webfont.ttf') format('truetype'),
+			url('OpenSans-BoldItalic-webfont.svg#open_sansbold_italic') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+	@font-face {
+		font-family: 'open_sansextrabold';
+		src: url('OpenSans-ExtraBold-webfont.eot');
+		src: url('OpenSans-ExtraBold-webfont.eot?#iefix') format('embedded-opentype'),
+			url('OpenSans-ExtraBold-webfont.woff') format('woff'),
+			url('OpenSans-ExtraBold-webfont.ttf') format('truetype'),
+			url('OpenSans-ExtraBold-webfont.svg#open_sansextrabold') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+	@font-face {
+		font-family: 'open_sansextrabold_italic';
+		src: url('OpenSans-ExtraBoldItalic-webfont.eot');
+		src: url('OpenSans-ExtraBoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+			url('OpenSans-ExtraBoldItalic-webfont.woff') format('woff'),
+			url('OpenSans-ExtraBoldItalic-webfont.ttf') format('truetype'),
+			url('OpenSans-ExtraBoldItalic-webfont.svg#open_sansextrabold_italic') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+	@font-face {
+		font-family: 'open_sansitalic';
+		src: url('OpenSans-Italic-webfont.eot');
+		src: url('OpenSans-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+			url('OpenSans-Italic-webfont.woff') format('woff'),
+			url('OpenSans-Italic-webfont.ttf') format('truetype'),
+			url('OpenSans-Italic-webfont.svg#open_sansitalic') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+	@font-face {
+		font-family: 'open_sanslight';
+		src: url('OpenSans-Light-webfont.eot');
+		src: url('OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
+			url('OpenSans-Light-webfont.woff') format('woff'),
+			url('OpenSans-Light-webfont.ttf') format('truetype'),
+			url('OpenSans-Light-webfont.svg#open_sanslight') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+	@font-face {
+		font-family: 'open_sanslight_italic';
+		src: url('OpenSans-LightItalic-webfont.eot');
+		src: url('OpenSans-LightItalic-webfont.eot?#iefix') format('embedded-opentype'),
+			url('OpenSans-LightItalic-webfont.woff') format('woff'),
+			url('OpenSans-LightItalic-webfont.ttf') format('truetype'),
+			url('OpenSans-LightItalic-webfont.svg#open_sanslight_italic') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+	@font-face {
+		font-family: 'open_sansregular';
+		src: url('OpenSans-Regular-webfont.eot');
+		src: url('OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+			url('OpenSans-Regular-webfont.woff') format('woff'),
+			url('OpenSans-Regular-webfont.ttf') format('truetype'),
+			url('OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+	@font-face {
+		font-family: 'open_sanssemibold';
+		src: url('OpenSans-Semibold-webfont.eot');
+		src: url('OpenSans-Semibold-webfont.eot?#iefix') format('embedded-opentype'),
+			url('OpenSans-Semibold-webfont.woff') format('woff'),
+			url('OpenSans-Semibold-webfont.ttf') format('truetype'),
+			url('OpenSans-Semibold-webfont.svg#open_sanssemibold') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+	@font-face {
+		font-family: 'open_sanssemibold_italic';
+		src: url('OpenSans-SemiboldItalic-webfont.eot');
+		src: url('OpenSans-SemiboldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+			url('OpenSans-SemiboldItalic-webfont.woff') format('woff'),
+			url('OpenSans-SemiboldItalic-webfont.ttf') format('truetype'),
+			url('OpenSans-SemiboldItalic-webfont.svg#open_sanssemibold_italic') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+	@font-face {
+		font-family: 'special_eliteregular';
+		src: url('SpecialElite-webfont.eot');
+		src: url('SpecialElite-webfont.eot?#iefix') format('embedded-opentype'),
+			url('SpecialElite-webfont.woff') format('woff'),
+			url('SpecialElite-webfont.ttf') format('truetype'),
+			url('SpecialElite-webfont.svg#special_eliteregular') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'edoregular';
+		src: url('edo-webfont.eot');
+		src: url('edo-webfont.eot?#iefix') format('embedded-opentype'),
+			url('edo-webfont.woff') format('woff'),
+			url('edo-webfont.ttf') format('truetype'),
+			url('edo-webfont.svg#edoregular') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+	/* Regular */
+	@font-face {
+    	font-family: 'League Gothic';
+    	src: url('leaguegothic-italic-webfont.eot');
+    	src: url('leaguegothic-italic-webfont.eot?#iefix') format('embedded-opentype'),
+    		url('leaguegothic-italic-webfont.woff') format('woff'),
+    		url('leaguegothic-italic-webfont.ttf') format('truetype'),
+			url('leaguegothic-italic-webfont.svg#league_gothic_italicregular') format('svg');
+		font-weight: normal;
+		font-style: italic;
+	}
+	/* Italic */
+	@font-face {
+		font-family: 'League Gothic';
+    	src: url('leaguegothic-regular-webfont.eot');
+    	src: url('leaguegothic-regular-webfont.eot?#iefix') format('embedded-opentype'),
+			url('leaguegothic-regular-webfont.woff') format('woff'),
+			url('leaguegothic-regular-webfont.ttf') format('truetype'),
+			url('leaguegothic-regular-webfont.svg#league_gothicregular') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+	/* Condensed */
+	@font-face {
+		font-family: 'League Gothic Condensed';
+		src: url('leaguegothic-condensed-regular-webfont.eot');
+		src: url('leaguegothic-condensed-regular-webfont.eot?#iefix') format('embedded-opentype'),
+			url('leaguegothic-condensed-regular-webfont.woff') format('woff'),
+			url('leaguegothic-condensed-regular-webfont.ttf') format('truetype'),
+			url('leaguegothic-condensed-regular-webfont.svg#league_gothic_condensed-Rg') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+	/* Condensed Italic */
+	@font-face {
+		font-family: 'League Gothic Condensed';
+		src: url('leaguegothic-condensed-italic-webfont.eot');
+		src: url('leaguegothic-condensed-italic-webfont.eot?#iefix') format('embedded-opentype'),
+			url('leaguegothic-condensed-italic-webfont.woff') format('woff'),
+			url('leaguegothic-condensed-italic-webfont.ttf') format('truetype'),
+			url('leaguegothic-condensed-italic-webfont.svg#league_gothic_condensed_itaRg') format('svg');
+		font-weight: normal;
+		font-style: italic;
+	}
+
+/* #Basic
+================================================== */
+	body {
+		background-color:#FFF; /* FIRST (LIGHTEST) */
+		font-family: "open_sansregular", sans-serif;
+	}
+	h1, h2, h3, h4, h5, h6 {
+		font-family: "edoregular", cursive;
+	}
+
+/* #Header
+================================================== */
+	.header {
+		background-color:#DDD; /* THIRD (SECOND DARKEST) */
+		padding:10px 0;
+	}
+	.header input,label {
+		display:inline-block;
+	}
+	.header input#fsmSearch {
+		width:620px; /* two-third page width of 960px, minus 10px padding x2 */
+		max-width:50%; /* keep submit button on same line */
+	}
+	.header div form fieldset label {
+		padding-right:1em;
+	}
+	.header div.one-third img {
+		width:223px; /* one-third page width of 960px, minus 10px padding x2 ; FSM_logo.png is 426x188 */
+		max-width:100%; /* constrains overlap */
+	}
+
+/* #Article
+================================================== */
+	.article {
+		background-color:#EEE; /* SECOND (SECOND LIGHTEST) */
+		padding:10px 0;
+		line-height:1.3em;
+	}
+
+/* #Aside
+================================================== */
+	.aside {
+		background-color:#CCC; /* FOURTH (DARKEST) */
+		padding:10px 0;
+	}
+	.aside img {
+		overflow:hidden;
+		width:220px; /* one-fourth page width of 960px, minus 10px padding x2 */
+		max-width:100%; /* constrains overlap */
+	}
+
+/* #Footer
+================================================== */
+	.footer {
+		background-color:#DDD; /* THIRD (SECOND DARKEST) */
+		padding:10px 0;
+		font-size:small;
+		line-height:1.3em;
+	}
+	.footer p {
+		margin-bottom:1em;
+	}
+
+/* #Splash
+================================================== */
+	.splash {
+		padding:10px 0;
+	}
+	.splash img {
+		width:940px; /* two-third page width of 960px, minus 10px padding x2 */
+		max-width:100%; /* constrains overlap */
+	}
+	.splash p {
+		position: absolute;
+		top: 5%;
+		right:10px;
+
+		background: rgb(128, 128, 128); /* fallback color */
+		background: rgba(128, 128, 128, 0.75);
+		color: white; 
+		text-align:right;
+		max-width:460px; /* constrains overlap */
+		padding: 10px; 
+	}
+
+/* #Results
+================================================== */
+	.results,
+	.results h1,
+	.results h2,
+	.results h3,
+	.results h4,
+	.results h5,
+	.results h6 {
+		font-family: "open_sansregular", sans-serif;
+	}
+	.results li {
+		width:620px; /* two-third page width of 960px, minus 10px padding x2 */
+		max-width:100%; /* constrains overlap */
+	}
+	.results li:nth-child(odd) {
+		background-color:#CCC; /* FOURTH (DARKEST) */
+	}
+	.results li:nth-child(even) {
+		background-color:#DDD; /* THIRD (SECOND DARKEST) */
+	}
+
+/* #Record
+================================================== */
+	.record,
+	.record h1,
+	.record h2,
+	.record h3,
+	.record h4,
+	.record h5,
+	.record h6 {
+		font-family: "special_eliteregular", monospace;
+	}
+	.record img {
+		width:620px; /* two-third page width of 960px, minus 10px padding x2 */
+		max-width:100%; /* constrains overlap */
+	}
+
+/* #Tags
+================================================== */
+	.tags button {
+		display:inline-block;
+		margin:2px;
+	}
+	.tags input {
+		display:inline-block;
+	}
+	.tags input#fsmTag {
+		width:300px; /* one-third page width of 960px, minus 10px padding x2 */
+		max-width:50%; /* keep submit button on same line */
+	}
+
+
+
+/* #Button Changes
+================================================== */
+	.button,
+	button,
+	input[type="submit"],
+	input[type="reset"],
+	input[type="button"] {
+		background: #4156C5; /* Old browsers */
+		background: #4156C5 -moz-linear-gradient(top, rgba(255,255,255,.2) 0%, rgba(0,0,0,.2) 100%); /* FF3.6+ */
+		background: #4156C5 -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,.2)), color-stop(100%,rgba(0,0,0,.2))); /* Chrome,Safari4+ */
+		background: #4156C5 -webkit-linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%); /* Chrome10+,Safari5.1+ */
+		background: #4156C5 -o-linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%); /* Opera11.10+ */
+		background: #4156C5 -ms-linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%); /* IE10+ */
+		background: #4156C5 linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%); /* W3C */
+		border: 1px solid #666;
+		border-top: 1px solid #999;
+		border-left: 1px solid #999;
+		color: #FFF;
+		text-shadow: -1px -1px rgba(0, 0, 0, .75);
+		font-family: "open_sansregular", sans-serif; }
+
+	.button:hover,
+	button:hover,
+	input[type="submit"]:hover,
+	input[type="reset"]:hover,
+	input[type="button"]:hover {
+		background: #E35BD8; /* Old browsers */
+		background: #E35BD8 -moz-linear-gradient(top, rgba(255,255,255,.3) 0%, rgba(0,0,0,.3) 100%); /* FF3.6+ */
+		background: #E35BD8 -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,.3)), color-stop(100%,rgba(0,0,0,.3))); /* Chrome,Safari4+ */
+		background: #E35BD8 -webkit-linear-gradient(top, rgba(255,255,255,.3) 0%,rgba(0,0,0,.3) 100%); /* Chrome10+,Safari5.1+ */
+		background: #E35BD8 -o-linear-gradient(top, rgba(255,255,255,.3) 0%,rgba(0,0,0,.3) 100%); /* Opera11.10+ */
+		background: #E35BD8 -ms-linear-gradient(top, rgba(255,255,255,.3) 0%,rgba(0,0,0,.3) 100%); /* IE10+ */
+		background: #E35BD8 linear-gradient(top, rgba(255,255,255,.3) 0%,rgba(0,0,0,.3) 100%); /* W3C */
+		border: 1px solid #999;
+		border-top: 1px solid #CCC;
+		border-left: 1px solid #CCC;
+		color: #FFF; }
+
+	.button:active,
+	button:active,
+	input[type="submit"]:active,
+	input[type="reset"]:active,
+	input[type="button"]:active {
+		background: #635688; /* Old browsers */
+		background: #635688 -moz-linear-gradient(top, rgba(255,255,255,.35) 0%, rgba(10,10,10,.4) 100%); /* FF3.6+ */
+		background: #635688 -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,.35)), color-stop(100%,rgba(10,10,10,.4))); /* Chrome,Safari4+ */
+		background: #635688 -webkit-linear-gradient(top, rgba(255,255,255,.35) 0%,rgba(10,10,10,.4) 100%); /* Chrome10+,Safari5.1+ */
+		background: #635688 -o-linear-gradient(top, rgba(255,255,255,.35) 0%,rgba(10,10,10,.4) 100%); /* Opera11.10+ */
+		background: #635688 -ms-linear-gradient(top, rgba(255,255,255,.35) 0%,rgba(10,10,10,.4) 100%); /* IE10+ */
+		background: #635688 linear-gradient(top, rgba(255,255,255,.35) 0%,rgba(10,10,10,.4) 100%); /* W3C */ 
+		border: 1px solid #666;
+		border-top: 1px solid #999;
+		border-left: 1px solid #999; }
+
+
+
+/* #Links
+================================================== */
+	.article a, .footer a { color: #4156C5;	}
+	.article a:visited, .footer a:visited { color: #635688; }
+	.article a:hover, .article a:focus, .footer a:hover, .footer a:focus { color: #E35BD8; }
+
+
+	.article a, .article a:visited, .article a:hover, .article a:focus,
+	.footer a, .footer a:visited, .footer a:hover, .footer a:focus {
+		text-decoration: none;
+		border-bottom:1px dotted;
+	}

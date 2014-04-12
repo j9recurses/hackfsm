@@ -1,0 +1,134 @@
+
+	<!-- Primary Page Layout
+	================================================== -->
+
+	<header class="container header">
+		<div class="two-thirds column">
+				<!-- Label and text input -->
+				<!-- <label for="fsmSearch"></label> -->
+				<form action="/" method="POST">
+				<!-- Label and text input -->
+				<!-- <label for="fsmSearch"></label> -->
+				<input text name="search" style="font-size:25pt;"></input text>
+   				<input type="submit" value="Search Archive" style="font-size:20pt;"/>
+
+
+				<!-- Wrap checkbox/radio button groups in fieldsets -->
+				<fieldset>
+					<!-- Give the fieldset a label -->
+					<!-- <label for=""></label> -->
+					<!-- Wrap each checkbox in a label, then give it the input and span for the text option -->
+					<label for="fsmCircularsCheckbox" title="fliers (printed matter), leaflets, pamphlets">
+						<input type="checkbox" id="fsmCircularsCheckbox" value="circulars" />
+						<span>circulars</span>
+					</label>
+					<label for="fsmCommentaryCheckbox" title="group statements, oral histories, personal statement, personal statements">
+						<input type="checkbox" id="fsmCommentaryCheckbox" value="commentary" />
+						<span>commentary</span>
+					</label>
+					<label for="fsmCorrespondenceCheckbox" title="form letters, letters (correspondence)" >
+						<input type="checkbox" id="fsmCorrespondenceCheckbox" value="correspondence" />
+						<span>correspondence</span>
+					</label>
+					<label for="fsmDocumentsCheckbox" title="papers (document genres), tables of content, text, title pages">
+						<input type="checkbox" id="fsmDocumentsCheckbox" value="texts" />
+						<span>documents</span>
+					</label>
+					<label for="fsmImagesCheckbox" title="still image">
+						<input type="checkbox" id="fsmImagesCheckbox" value="images" />
+						<span>images</span>
+					</label>
+					<label for="fsmPeriodicalsCheckbox" title="articles, magazines (periodicals), news bulletins, newsletters, newspapers">
+						<input type="checkbox" id="fsmPeriodicalsCheckbox" value="periodicals" />
+						<span>periodicals</span>
+					</label>
+					<label for="fsmReportsCheckbox" title="agendas, briefs (legal documents), memorandums, minutes, transcripts, progress reports, reports">
+						<input type="checkbox" id="fsmReportsCheckbox" value="reports" />
+						<span>reports</span>
+					</label>
+					<label for="fsmMiscellaneousCheckbox" title="detail, fdr, folder, item, miscellaneous">
+						<input type="checkbox" id="fsmMiscellaneousCheckbox" value="miscellaneous" />
+						<span>miscellaneous</span>
+					</label>
+				</fieldset>
+			</form>
+		</div>
+		<div class="one-third column">
+			<a href="#" title="&ldquo;I am a UC student. Please don't bend, fold, spindle or mutilate me.&rdquo;"><img src="images/FSM_logo.png" alt="FSM"></a>
+			<h2>Digital Archive</h2>
+		</div>
+	</header>
+  	
+
+
+
+    <article class="container article">
+		<div class="two-thirds column">
+			
+			 	<h2><%= @title %> <h2>
+
+
+				<% 
+				if @imgurlsize != 0
+				   	   @imgurl.each do |i| 
+				   	   if i != 'xxx'%>
+				   	 
+						<%= '<a href="' + i +'"><img src="' +i +  '"></a>' %>
+						
+				<% end
+				  end 
+				   end %>
+			</div>
+
+
+		<div class="one-third column">
+			<h3>Tags</h3>
+			<form action= "/cool" id="tagz" method="POST">
+				<!-- Label and text input -->
+				<!-- <label for="fsmTag"></label> -->
+				<button type="submit">correspondence</button>
+				<button type="submit">letters</button>
+				<button type="submit">Clark Kerr</button>
+				<button type="submit">December</button>
+				<button type="submit">1964</button>
+				<button type="submit">Mario Savio</button>
+				<button type="submit">Suzanne Goldberg</button>
+				<button type="submit">Steering Committee</button>
+				<div id="mytag"> </div>
+				<hr/>
+
+				<input type="text" id="fsmTag" name = "fsmTag"/>
+				<input type="hidden" name="metaid" value="<%=@id%>">
+				<button type="submit">Add Tag</button>
+			</form>
+		</div>
+
+	
+	</article>
+
+ <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function (){
+        $('#tagz').submit(function(ev){
+          //this happens if form is submitted
+          //prevent the default behavior of a form (it should do nothing in our case)
+          ev.preventDefault();
+ 
+          //send an ajax request to our action
+              $.ajax({
+      		type: "POST",
+            url: "/cool",
+            //serialize the form and use it as data for our ajax request
+            data: $(this).serialize(),
+            //the type of data we are expecting back from server, could be json too
+            dataType: "html",
+            success: function(data) {
+              //if our ajax request is successful, replace the content of our viz div with the response data
+              $('#mytag').html(data);
+            }
+          });
+ 
+        });
+      });
+    </script>
+    </script> 
