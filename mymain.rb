@@ -43,8 +43,7 @@ get '/singleresult' do
     @title = params["title"] 
     @imgurl =  params["imgurl"]
     @creator =  params["creator"]
-    @typeresource1 =  params['typeresource'][0]
-    @typeresource2 =  params['typeresource'][1]
+    @typeresource1 =  params['typeresource']
     @relatedtitle = params['relatedtitle']
     @location = params['location']
     @imgurl = @imgurl.split('$')

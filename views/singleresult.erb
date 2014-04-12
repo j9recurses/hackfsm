@@ -1,9 +1,5 @@
 
-	<!-- Primary Page Layout
-	================================================== -->
-
-
-
+	
 	<header class="container header">
 		<div class="two-thirds column">
 				<!-- Label and text input -->
@@ -11,10 +7,11 @@
 				<form action="/" method="POST">
 				<!-- Label and text input -->
 				<!-- <label for="fsmSearch"></label> -->
-				<input text name="search_cool" style="font-size:25pt;" label="search_cool" ></input text>
-				 <label for="search_cool">search</label>
-   				<input type="submit" label="submit" value="Search Archive" style="font-size:20pt;"/>
-   				
+				<input text name="search" id="search"  style="font-size:25pt;"></input text>
+				  <label for="search">search</label>
+   				<input type="submit" value="Search Archive" style="font-size:20pt;"/>
+
+
 				<!-- Wrap checkbox/radio button groups in fieldsets -->
 				<fieldset>
 					<!-- Give the fieldset a label -->
@@ -56,27 +53,26 @@
 			</form>
 		</div>
 		<div class="one-third column">
-			<a href="#" title="&ldquo;I am a UC student. Please don't bend, fold, spindle or mutilate me.&rdquo;"><img src="images/FSM_logo.png" alt="FSM"></a>
+			<a href="#" title="&ldquo;I am a UC student. Please don't bend, fold, spindle or mutilate me.&rdquo;">
+				<img src="images/FSM_logo.png" alt="FSM"></a>
 			<h2>Digital Archive</h2>
 		</div>
 	</header>
-  	
 
-
+  
 
     <article class="container article">
 		<div class="two-thirds column">
 			
-			 	<h2> Single Result: <%= @title %> </h2>
+			 	<h2> <%= @title %>  </h2>
 
 
-				<% 
-				if @imgurlsize != 0  
+				<%  if @imgurlsize != 0  
 
 				   	   @imgurl.each do |i| 
 				   	   if i != 'xxx'%>
-				   	 
-						<%= '<a href="' + i +'"><img src="' +i +  '" alt="Students march to Regents meeting" >   </a>' %>
+				   		<%= '<a href="' + i +'">
+				   		<img src="'+i +'"alt="Students march to Regents meeting"></a>' %>
 						
 				<% end
 				  end 
@@ -86,39 +82,40 @@
 
 
 		<div class="one-third column">
+
 			<h3>Tags</h3>
 			<form action="/" method="POST">
 				<!-- Label and text input -->
 				<!-- <label for="fsmTag"></label> -->
-				<button type="submit" id="search" name="search" value = "correspondence" >correspondence</button>
-				<button type="submit" id="search" name="search" value = "letters" >letters</button>
-				<button type="submit" id="search" name= "search" value = "Clark+Kerr"> Clark Kerr</button>
-				<button type="submit" id="search" name="search" value = "December"> December</button>
-				<button type="submit" id="search" name="search" value = "1964">1964</button>
-				<button type="submit" id="search" name="search" value = "Mario+Savio">Mario Savio</button>
-				<button type="submit" id="search" name="search" value = "Suzanne+Goldberg">Suzanne Goldberg</button>
-				<button type="submit" id="search" name="search" value ="Steering+Committee" >Steering Committee</button>
+				<button type="submit" id="search" name="search" value= "correspondence" >correspondence</button>
+				<button type="submit" id="search" name="search" value= "letters" >letters</button>
+				<button type="submit" id="search" name= "search" value= "Clark+Kerr"> Clark Kerr</button>
+				<button type="submit" id="search" name="search" value= "December"> December</button>
+				<button type="submit" id="search" name="search" value= "1964">1964</button>
+				<button type="submit" id="search" name="search" value= "Mario+Savio">Mario Savio</button>
+				<button type="submit" id="search" name="search" value= "Suzanne+Goldberg">Suzanne Goldberg</button>
+				<button type="submit" id="search" name="search" value="Steering+Committee" >Steering Committee</button>
 				<div id="mytag"> </div>
 				</form>
 
 
 
-				<form action= "/cool" id="tagz" method="POST">
-				<input type="text" id="fsmTag" label="mytag" name = "fsmTag"/>
+				<form action="/cool" id="tagz" method="POST">
+				<input type="text" id="fsmTag" label="mytag" name="fsmTag"/>
 				<input type="hidden" name="metaid" label="mylabel" value="<%=@id%>">
-				<button type="submit">Add Tag</button>
-			</form>
+				<label for="fsmTag">&nbsp:</label>
+				<button type="submit" label="submit">Add Tag</button>
+				</form> 	
+				<hr/>
 
-			<hr/>
-
-			<ol> <li> Creator: <%=@creator[0]%> </li>
-			<li> Related Collection: <%=@relatedtitle[0]%> </li> 
-				<li> ResourceType: <%= @typeresource1 </li>
-    			@typeresource2  </li>
-			</ol>
+				<ul><h3> Metadata</h3>
+				<li> Creator: <%=@creator%> </li>
+				<li> Related Collection: <%=@relatedtitle[0]%> </li> 
+				<li> ResourceType: <%= @typeresource1%> </li>
+				</ul>
 		</div>
 
-	
+	</div>
 	</article>
 
  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -147,3 +144,4 @@
       });
     </script>
     </script> 
+	
