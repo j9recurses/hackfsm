@@ -42,13 +42,17 @@ get '/singleresult' do
     @awesome = params
     @title = params["title"] 
     @imgurl =  params["imgurl"]
+    @creator =  params["creator"]
+    @typeresource1 =  params['typeresource'][0]
+    @typeresource2 =  params['typeresource'][1]
+    @relatedtitle = params['relatedtitle']
+    @location = params['location']
     @imgurl = @imgurl.split('$')
     @relatedtitle= @awesome['relatedtitle']
     @id = params["id"]
-
-    #select the content for the tags: 
-    @mytags = Tag.all
-
+    idz =  @id
+    @mytags = Tag.all(:metaid => params["id"])
+    @coolz =  Tag.aggregate(:all.count, :metaid.count)
   erb:singleresult
 end
 
@@ -57,7 +61,7 @@ post '/cool' do
    tagstr = params[:fsmTag]
    @stuff = params[:fsmTag]
    mymetaid = params[:metaid]
-   tag = Tag.create(:tag =>  tagstr)
+   tag = Tag.create(:mytag =>  tagstr)
    tag.metaid = mymetaid
    tag.save
    tag.metaid = mymetaid  

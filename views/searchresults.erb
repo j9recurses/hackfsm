@@ -9,6 +9,7 @@
 				<!-- Label and text input -->
 				<!-- <label for="fsmSearch"></label> -->
 				<input text name="search" id="search"  style="font-size:25pt;"></input text>
+				  <label for="search">search</label>
    				<input type="submit" value="Search Archive" style="font-size:20pt;"/>
 
 
@@ -119,6 +120,7 @@
 		@fsmImageUrl = "xxx" if @fsmImageUrl.nil? || @fsmImageUrl.empty?
 		@fsmTeiUrl =  d["fsmTeiUrl"]
 		@fsmTeiUrl = "xxx" if @fsmTeiUrl.nil? || @fsmTeiUrl.empty?
+		@fsmPhysicalLocatio = "xxx" if @fsmPhysicalLocation.nil? || @fsmPhysicalLocation.empty?
 
 	
 		if @fsmTitle.size > 0  and  @fsmTitle != 'xxx'
@@ -133,14 +135,18 @@
 		if @fsmRelatedTitle != 'xxx'
 			@fsmRelatedTitle = @fsmRelatedTitle.join(", ")
 		end
-		@fsmIdentifier  = @fsmIdentifier.join(", ")
-	
+		if @fsmIdentifier  != 'xxx'
+			@fsmIdentifier  = @fsmIdentifier.join(", ")
+		end
 		@fsmRelatedIdentifier  = @fsmRelatedIdentifier.join(", ")
 		if @fsmImageUrl != 'xxx'
 			@fsmImageUrl  = @fsmImageUrl.join("$")
 		end
 		if @fsmTeiUrl != 'xxx'
 			@fsmTeiUrl  = @fsmTeiUrl.join("$")
+		end
+		if @fsmPhysicalLocation  != 'xxx'
+			@fsmPhysicalLocation   = @fsmPhysicalLocation .join("$")
 		end
 
 
@@ -158,10 +164,10 @@
     <% end %>
 	 <a href=" <%=  @querystring %>"> <%= @fsmTitle%> + </a> <br/>
 	<% if @fsmCreator != 'xxx'%> <%= "Creator: " + @fsmCreator %> <%end%>
-	<% if @fsmPhysicalLocation != 'xxx'%> <%= "Location: " + @fsmPhysicalLocation %> <%end%> <br/>
+	<% if @fsmPhysicalLocation != 'xxx'%> <%= "Location: " + @fsmPhysicalLocation %> <%end%> 
 	<% @v = @fsmTypeOfResourcePretty.nil? 
 		if @v = false %>
-	<% if @fsmTypeOfResourcePretty != 'xxx' %> <%= "Resource Type: " +@fsmTypeOfResourcePretty[0] +": " +@fsmTypeOfResourcePretty[1] %> <%end%><%end%>  <br/>
+	<% if @fsmTypeOfResourcePretty != 'xxx' %> <%= "Resource Type: " +@fsmTypeOfResourcePretty[0] +": " +@fsmTypeOfResourcePretty[1] %> <%end%><%end%> 
 	<% if @fsmRelatedTitle != 'xxx'%> <%= "Related Collection: " + @fsmRelatedTitle  %> <%end%> 
 </li>
 

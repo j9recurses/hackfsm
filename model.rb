@@ -11,7 +11,7 @@ DataMapper::Model.raise_on_save_failure = true
 class Tag
 	include DataMapper::Resource
  	property :id,         Serial, :key => true
-  property :tag,        Text,   :required => true  # Cannot be null
+  property :mytag,        Text,   :required => true  # Cannot be null
 	property :metaid,     String
 	property :created_at, DateTime
 	property :updated_at, DateTime

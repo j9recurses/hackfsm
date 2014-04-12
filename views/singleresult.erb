@@ -2,6 +2,8 @@
 	<!-- Primary Page Layout
 	================================================== -->
 
+
+
 	<header class="container header">
 		<div class="two-thirds column">
 				<!-- Label and text input -->
@@ -9,10 +11,10 @@
 				<form action="/" method="POST">
 				<!-- Label and text input -->
 				<!-- <label for="fsmSearch"></label> -->
-				<input text name="search" style="font-size:25pt;"></input text>
-   				<input type="submit" value="Search Archive" style="font-size:20pt;"/>
-
-
+				<input text name="search_cool" style="font-size:25pt;" label="search_cool" ></input text>
+				 <label for="search_cool">search</label>
+   				<input type="submit" label="submit" value="Search Archive" style="font-size:20pt;"/>
+   				
 				<!-- Wrap checkbox/radio button groups in fieldsets -->
 				<fieldset>
 					<!-- Give the fieldset a label -->
@@ -65,15 +67,16 @@
     <article class="container article">
 		<div class="two-thirds column">
 			
-			 	<h2><%= @title %> <h2>
+			 	<h2> Single Result: <%= @title %> </h2>
 
 
 				<% 
-				if @imgurlsize != 0
+				if @imgurlsize != 0  
+
 				   	   @imgurl.each do |i| 
 				   	   if i != 'xxx'%>
 				   	 
-						<%= '<a href="' + i +'"><img src="' +i +  '"></a>' %>
+						<%= '<a href="' + i +'"><img src="' +i +  '" alt="Students march to Regents meeting" >   </a>' %>
 						
 				<% end
 				  end 
@@ -81,26 +84,38 @@
 			</div>
 
 
+
 		<div class="one-third column">
 			<h3>Tags</h3>
-			<form action= "/cool" id="tagz" method="POST">
+			<form action="/" method="POST">
 				<!-- Label and text input -->
 				<!-- <label for="fsmTag"></label> -->
-				<button type="submit">correspondence</button>
-				<button type="submit">letters</button>
-				<button type="submit">Clark Kerr</button>
-				<button type="submit">December</button>
-				<button type="submit">1964</button>
-				<button type="submit">Mario Savio</button>
-				<button type="submit">Suzanne Goldberg</button>
-				<button type="submit">Steering Committee</button>
+				<button type="submit" id="search" name="search" value = "correspondence" >correspondence</button>
+				<button type="submit" id="search" name="search" value = "letters" >letters</button>
+				<button type="submit" id="search" name= "search" value = "Clark+Kerr"> Clark Kerr</button>
+				<button type="submit" id="search" name="search" value = "December"> December</button>
+				<button type="submit" id="search" name="search" value = "1964">1964</button>
+				<button type="submit" id="search" name="search" value = "Mario+Savio">Mario Savio</button>
+				<button type="submit" id="search" name="search" value = "Suzanne+Goldberg">Suzanne Goldberg</button>
+				<button type="submit" id="search" name="search" value ="Steering+Committee" >Steering Committee</button>
 				<div id="mytag"> </div>
-				<hr/>
+				</form>
 
-				<input type="text" id="fsmTag" name = "fsmTag"/>
-				<input type="hidden" name="metaid" value="<%=@id%>">
+
+
+				<form action= "/cool" id="tagz" method="POST">
+				<input type="text" id="fsmTag" label="mytag" name = "fsmTag"/>
+				<input type="hidden" name="metaid" label="mylabel" value="<%=@id%>">
 				<button type="submit">Add Tag</button>
 			</form>
+
+			<hr/>
+
+			<ol> <li> Creator: <%=@creator[0]%> </li>
+			<li> Related Collection: <%=@relatedtitle[0]%> </li> 
+				<li> ResourceType: <%= @typeresource1 </li>
+    			@typeresource2  </li>
+			</ol>
 		</div>
 
 	

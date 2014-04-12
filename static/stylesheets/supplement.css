@@ -186,93 +186,148 @@
 
 /* #Basic
 ================================================== */
-body {
-	background-color:#FFF; /* FIRST (LIGHTEST) */
-	font-family: "open_sansregular", sans-serif;
-}
-h1, h2, h3, h4, h5, h6 {
-	font-family: "edoregular", cursive;
-}
-
-
+	body {
+		background-color:#FFF; /* FIRST (LIGHTEST) */
+		font-family: "open_sansregular", sans-serif;
+	}
+	h1, h2, h3, h4, h5, h6 {
+		font-family: "edoregular", cursive;
+	}
 
 /* #Header
 ================================================== */
-.header {
-	background-color:#DDD; /* THIRD (SECOND DARKEST) */
-	padding:10px;
-}
-.header input,label {
-	display:inline-block;
-}
-.header input#fsmSearch {
-	width:620px; /* two-third page width of 960px, minus 10px padding x2 */
-	max-width:50%; /* keep submit button on same line */
-}
-.header div form fieldset label {
-	padding-right:1em;
-}
-.header div.one-third img {
-	width:223px; /* one-third page width of 960px, minus 10px padding x2 ; FSM_logo.png is 426x188 */
-	max-width:100%; /* constrains overlap */
-}
+	.header {
+		background-color:#DDD; /* THIRD (SECOND DARKEST) */
+		padding:10px 0;
+		min-height:100%; /* force height */
+	}
+	.header input,label {
+		display:inline-block;
+	}
+	.header input#fsmSearch {
+		width:620px; /* two-third page width of 960px, minus 10px padding x2 */
+		max-width:50%; /* keep submit button on same line */
+	}
+	.header div form fieldset label {
+		padding-right:1em;
+	}
+	.header div.one-third img {
+		width:223px; /* one-third page width of 960px, minus 10px padding x2 ; FSM_logo.png is 426x188 */
+		max-width:100%; /* constrains overlap */
+
+		-webkit-box-shadow: -1px 2px 1px 0px rgba(0,0,0,0.75);
+		-moz-box-shadow: -1px 2px 1px 0px rgba(0,0,0,0.75);
+		box-shadow: -1px 2px 1px 0px rgba(0,0,0,0.75);
+	}
 
 /* #Article
 ================================================== */
-.article {
-	background-color:#EEE; /* SECOND (SECOND LIGHTEST) */
-	padding:10px;
-}
-.article div.two-thirds,
-.article div.two-thirds h1,
-.article div.two-thirds h2,
-.article div.two-thirds h3,
-.article div.two-thirds h4,
-.article div.two-thirds h5,
-.article div.two-thirds h6 {
-	font-family: "special_eliteregular", monospace;
-}
-.article img {
-	width:620px; /* two-third page width of 960px, minus 10px padding x2 */
-	max-width:100%; /* constrains overlap */
-}
-
-.article button {
-	display:inline-block;
-	margin:2px;
-}
-.article input {
-	display:inline-block;
-}
-.article input#fsmTag {
-	width:300px; /* one-third page width of 960px, minus 10px padding x2 */
-	max-width:50%; /* keep submit button on same line */
-}
+	.article {
+		background-color:#EEE; /* SECOND (SECOND LIGHTEST) */
+		padding:10px 0;
+		line-height:1.3em;
+		min-height:100%; /* force height */
+	}
 
 /* #Aside
 ================================================== */
-.aside {
-	background-color:#CCC; /* FOURTH (DARKEST) */
-	padding:10px;
-}
-.aside img {
-	width:220px; /* one-fourth page width of 960px, minus 10px padding x2 */
-	max-width:100%; /* constrains overlap */
-}
+	.aside {
+		background-color:#CCC; /* FOURTH (DARKEST) */
+		padding:10px 0;
+		min-height:100%; /* force height */
+	}
+	.aside img {
+		overflow:hidden;
+		width:220px; /* one-fourth page width of 960px, minus 10px padding x2 */
+		max-width:100%; /* constrains overlap */
+	}
 
 /* #Footer
 ================================================== */
-.footer {
-	background-color:#DDD; /* THIRD (SECOND DARKEST) */
-	padding:10px;
-}
-.footer p {
-	font-size:small;
-	line-height:1.5em;
-	margin:1em;
-}
+	.footer {
+		background-color:#DDD; /* THIRD (SECOND DARKEST) */
+		padding:10px 0;
+		font-size:small;
+		line-height:1.3em;
+		min-height:100%; /* force height */
+	}
+	.footer p {
+		margin-bottom:1em;
+	}
 
+/* #Splash
+================================================== */
+	.splash {
+		padding:10px 0;
+	}
+	.splash img {
+		width:940px; /* two-third page width of 960px, minus 10px padding x2 */
+		max-width:100%; /* constrains overlap */
+	}
+	.splash p {
+		position: absolute;
+		top: 5%;
+		right:10px;
 
+		background: rgb(128, 128, 128); /* fallback color */
+		background: rgba(128, 128, 128, 0.75);
+		color: white; 
+		text-align:right;
+		max-width:66%; /* constrains overlap */
+		padding: 10px;
+	}
+
+/* #Results
+================================================== */
+	.results,
+	.results h1,
+	.results h2,
+	.results h3,
+	.results h4,
+	.results h5,
+	.results h6 {
+		font-family: "open_sansregular", sans-serif;
+	}
+	.results li {
+		width:620px; /* two-third page width of 960px, minus 10px padding x2 */
+		max-width:100%; /* constrains overlap */
+	}
+	.results li:nth-child(odd) {
+		background-color:#CCC; /* FOURTH (DARKEST) */
+	}
+	.results li:nth-child(even) {
+		background-color:#DDD; /* THIRD (SECOND DARKEST) */
+	}
+
+/* #Record
+================================================== */
+	.record,
+	.record h1,
+	.record h2,
+	.record h3,
+	.record h4,
+	.record h5,
+	.record h6 {
+		font-family: "special_eliteregular", monospace;
+	}
+	.record img {
+		width:620px; /* two-third page width of 960px, minus 10px padding x2 */
+		max-width:100%; /* constrains overlap */
+	}
+
+/* #Tags
+================================================== */
+	.tags button {
+		display:inline-block;
+		margin:2px;
+	}
+	.tags input {
+		display:inline-block;
+	}
+	.tags input#fsmTag {
+		width:300px; /* one-third page width of 960px, minus 10px padding x2 */
+		max-width:50%; /* keep submit button on same line */
+	}
 
 
 
@@ -345,3 +400,11 @@ h1, h2, h3, h4, h5, h6 {
 		border-bottom:1px dotted;
 	}
 
+	.splash a, .splash a:visited, .splash a:hover, .splash a:focus {
+		color: #FFF;
+		text-decoration: none;
+		border-bottom:none;
+	}
+	.splash a:hover, .splash a:focus {
+		border-bottom:1px dotted;
+	}
